@@ -6,6 +6,7 @@
 package edu.frostburg.cosc331.sethathomas.chat;
 
 import javax.swing.JTextArea;
+import javax.swing.text.DefaultCaret;
 
 /**
  * Create a Server to respond to the Client
@@ -23,8 +24,12 @@ public class ChatGui extends javax.swing.JFrame {
    */
   public ChatGui() {
     this.cli = null;
-    this.srv = null;
+    this.srv = null;   
     initComponents();
+    
+    // auto scrolling
+    DefaultCaret caret = (DefaultCaret)jTextAreaChatOutput.getCaret();
+    caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
   }
 
   public Client getCli() {
@@ -81,6 +86,7 @@ public class ChatGui extends javax.swing.JFrame {
 
     jTextAreaChatOutput.setEditable(false);
     jTextAreaChatOutput.setColumns(20);
+    jTextAreaChatOutput.setLineWrap(true);
     jTextAreaChatOutput.setRows(5);
     jScrollPane1.setViewportView(jTextAreaChatOutput);
 
